@@ -1,0 +1,63 @@
+
+label{
+    display: inline-block;
+    font-size: 1.3rem;
+    margin: 15px 0;
+}
+
+.d-flex {
+    display: flex;
+} 
+
+.flex-space-between{
+    justify-content: space-between;
+}
+
+.flex-justify-center{
+    justify-content: center;
+}
+
+.right-align{
+    text-align: right;
+}
+
+.font-bold{
+    font-weight: 600;
+}
+
+.color-red{
+    color: red
+}
+
+.bg-color-white{
+    background-color: white;
+}
+
+.bg-color-blue{
+    background-color: #00a6ffb0;
+}
+
+.bg-color-green{
+    background-color: #5aa05a;
+}
+
+
+
+.table-footer{
+   margin-top: 8px;
+   font-size: 0.8em;
+}
+
+.legend{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 5px;
+}
+
+.color-box{
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 10px;
+    height: 10px;
+}
