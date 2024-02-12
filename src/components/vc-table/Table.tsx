@@ -10,27 +10,27 @@ function Table({
   tableOptions,
   height,
 }: VCTableProps): React.JSX.Element {
-  const [filter, setFilter] = useState("");
+  const [sorter, setSoter] = useState("");
   const [rowItems, setRowItems] = useState([...rowData]);
   const colRef = useRef<HTMLTableRowElement | null>(null);
   const { rowClassRules } = tableOptions || {};
 
   const onSortClick = (colId: string) => {
-    setFilter(!colId ? colId : filter === colId ? "" : colId);
+    setSoter(!sorter ? colId : sorter === colId ? "" : colId);
   };
 
   useEffect(() => {
     let currRowItems = rowItems;
-    if (filter) {
+    if (sorter) {
       const sortType = colDef.find(
-        (col: VCColDefType) => col.colId === filter
+        (col: VCColDefType) => col.colId === sorter
       ).sortType;
-      currRowItems = getSortedData(currRowItems, sortType, filter);
+      currRowItems = getSortedData(currRowItems, sortType, sorter);
       setRowItems([...currRowItems]);
       return;
     }
     setRowItems([...rowData]);
-  }, [filter]);
+  }, [sorter]);
 
   useEffect(() => {
     setRowItems([...rowData]);
@@ -58,7 +58,7 @@ function Table({
                         icon={getIcon(col.sortType)}
                         style={{ cursor: "pointer" }}
                         onClick={() => onSortClick(col.colId)}
-                        color={filter === col.colId ? "black" : "lightgrey"}
+                        color={sorter === col.colId ? "black" : "lightgrey"}
                       />
                       {/* {sortOpen === col.colId && <Dropdown />} */}
                     </div>
