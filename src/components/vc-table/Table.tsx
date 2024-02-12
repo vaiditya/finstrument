@@ -22,8 +22,9 @@ function Table({
   useEffect(() => {
     let currRowItems = rowItems;
     if (filter) {
-      // @ts-ignore
-      const sortType = colDef.find((col) => col.colId === filter).sortType;
+      const sortType = colDef.find(
+        (col: VCColDefType) => col.colId === filter
+      ).sortType;
       currRowItems = getSortedData(currRowItems, sortType, filter);
       setRowItems([...currRowItems]);
       return;
@@ -76,7 +77,6 @@ function Table({
                   className={rowClassRules ? rowClassRules(rowItem) : ""}
                 >
                   {colIds.map((colId) => {
-                    //@ts-ignore
                     const currColDef: VCColDefType = colDef.find(
                       (col: VCColDefType) => col.colId === colId
                     );
@@ -85,11 +85,9 @@ function Table({
                         {currColDef.cellRenderer
                           ? currColDef.cellRenderer({
                               rowData: rowItem,
-                              //@ts-ignore
                               colData: rowItem[colId],
                             })
-                          : //@ts-ignore
-                            rowItem[colId]}
+                          : rowItem[colId]}
                       </td>
                     );
                   })}

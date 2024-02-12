@@ -1,12 +1,10 @@
-import { useEffect, useState, useRef } from "react";
-import { JsxAttribute } from "typescript";
+import { useEffect, useState } from "react";
 import instrumentGridColDefs from "../config/instrumentGridColDefs";
 import instrumentsResponse from "../mocks/instrumentsResponse";
 import { APIInstrumentResponseType } from "../types";
-import Footer from "./Footer";
 
+import Footer from "./Footer";
 import Table from "./vc-table";
-import { VCRowRendererProps } from "./vc-table/types";
 
 function Home(): React.JSX.Element {
   const [rowData, setRowData] = useState<APIInstrumentResponseType[]>([]);
@@ -15,7 +13,6 @@ function Home(): React.JSX.Element {
     //API call to fetch data
     Promise.resolve(instrumentsResponse)
       .then((apiInstrumentResponse) => {
-        // @ts-ignore
         setRowData(apiInstrumentResponse);
       })
       .catch((err) => {
@@ -25,10 +22,8 @@ function Home(): React.JSX.Element {
   }, []);
 
   const tableOptions = {
-    rowClassRules: (rowData: VCRowRendererProps) => {
-      // @ts-ignore
+    rowClassRules: (rowData: APIInstrumentResponseType) => {
       const { assetClass } = rowData;
-
       switch (assetClass) {
         case "Macro":
           return "bg-color-white";

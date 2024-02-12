@@ -4,31 +4,26 @@ import {
   faFilter,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
-import { SortType } from "./types";
+import { RowDataPropsString, SortType } from "./types";
 
 export const getSortedData = (
-  rowItems: Object[],
+  rowItems: RowDataPropsString[],
   sortType: SortType | undefined,
   colId: string
 ) => {
   switch (sortType) {
     case "desc":
-      //@ts-ignore
-      return [...rowItems.sort((a, b) => b[colId] - a[colId])];
+      return [...rowItems.sort((a, b) => +b[colId] - +a[colId])];
     case "AtoZ":
       return [
         ...rowItems.sort((a, b) =>
-          //@ts-ignore
           a[colId] ? a[colId].localeCompare(b[colId]) : 1
         ),
       ];
     case "assetType":
       const res = [
-        //@ts-ignore
         ...rowItems.filter((r) => r[colId] === "Equities"),
-        //@ts-ignore
         ...rowItems.filter((r) => r[colId] === "Macro"),
-        //@ts-ignore
         ...rowItems.filter((r) => r[colId] === "Credit"),
       ];
       return res.length === rowItems.length ? res : rowItems;
@@ -36,7 +31,7 @@ export const getSortedData = (
   return [...rowItems];
 };
 
-export const getColIds = (nodes: HTMLElement[]) => {
+export const getColIds = (nodes: HTMLElement[]): string[] => {
   let colIds = [];
   for (let i = 0; i < nodes.length; i++) {
     colIds.push(nodes[i].id);

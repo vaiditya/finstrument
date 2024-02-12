@@ -1,11 +1,17 @@
+import { VCCellRendererProps } from "./components/vc-table/types";
+
 export enum AssetClassEnum {
   "Macro" = "Macro",
   "Equities" = "Equities",
   "assetType" = "Credit",
 }
 
-export type APIInstrumentResponseType = {
+export interface APIInstrumentResponseType {
   ticker: string;
   price: number;
-  assetClass: AssetClassEnum;
-}[];
+  assetClass: string;
+}
+
+export type VCRowRendererProps = {
+  rowData: APIInstrumentResponseType;
+};

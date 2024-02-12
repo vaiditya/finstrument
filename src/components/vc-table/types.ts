@@ -4,13 +4,15 @@ export enum SortType {
   "assetType" = "assetType",
 }
 
+export type RowDataPropsNumber = { [K: string]: number };
+
+export type RowDataPropsString = { [K: string]: string };
+
+export type RowDataProps = { [K: string]: number | string };
+
 export type VCCellRendererProps = {
   colData: string | number;
-  rowData?: Object;
-};
-
-export type VCRowRendererProps = {
-  rowData: Object;
+  rowData?: RowDataProps;
 };
 
 export type VCColDefType = {
@@ -21,7 +23,7 @@ export type VCColDefType = {
 };
 
 export type VCTableProps = {
-  rowData: Object[];
+  rowData: any[];
   colDef: VCColDefType[] | any;
   tableOptions?: {
     rowClassRules?: Function;
